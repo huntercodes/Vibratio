@@ -17,6 +17,7 @@
 		416BCDE728623D7300B01766 /* TitleHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416BCDE628623D7300B01766 /* TitleHeaderCollectionReusableView.swift */; };
 		416BCDE928624A6200B01766 /* AlbumTrackCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416BCDE828624A6200B01766 /* AlbumTrackCollectionViewCell.swift */; };
 		416BCDEB28624CCC00B01766 /* AlbumCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416BCDEA28624CCC00B01766 /* AlbumCellViewModel.swift */; };
+		416BCDEF286277B100B01766 /* GenreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416BCDEE286277B100B01766 /* GenreCollectionViewCell.swift */; };
 		417E0C02282067F500FCFB34 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417E0C01282067F500FCFB34 /* SettingsModel.swift */; };
 		41D5B4802819DAA500B98730 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D5B47F2819DAA500B98730 /* TabBarViewController.swift */; };
 		41D5B4842819DAFC00B98730 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D5B4832819DAFC00B98730 /* LibraryViewController.swift */; };
@@ -69,6 +70,7 @@
 		416BCDE628623D7300B01766 /* TitleHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		416BCDE828624A6200B01766 /* AlbumTrackCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumTrackCollectionViewCell.swift; sourceTree = "<group>"; };
 		416BCDEA28624CCC00B01766 /* AlbumCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCellViewModel.swift; sourceTree = "<group>"; };
+		416BCDEE286277B100B01766 /* GenreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreCollectionViewCell.swift; sourceTree = "<group>"; };
 		417E0C01282067F500FCFB34 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		41D5B47F2819DAA500B98730 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		41D5B4832819DAFC00B98730 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				41D78AD9285D104D003FA511 /* PlaylistHeaderCollectionReusableView.swift */,
 				416BCDE628623D7300B01766 /* TitleHeaderCollectionReusableView.swift */,
 				416BCDE828624A6200B01766 /* AlbumTrackCollectionViewCell.swift */,
+				416BCDEE286277B100B01766 /* GenreCollectionViewCell.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				41485E272819D80B000648D0 /* HomeViewController.swift in Sources */,
 				41D5B49E2819DD6000B98730 /* AudioTrack.swift in Sources */,
 				41D5B4882819DBBE00B98730 /* AuthViewController.swift in Sources */,
+				416BCDEF286277B100B01766 /* GenreCollectionViewCell.swift in Sources */,
 				41D78ADA285D104D003FA511 /* PlaylistHeaderCollectionReusableView.swift in Sources */,
 				417E0C02282067F500FCFB34 /* SettingsModel.swift in Sources */,
 				41485E232819D80B000648D0 /* AppDelegate.swift in Sources */,
