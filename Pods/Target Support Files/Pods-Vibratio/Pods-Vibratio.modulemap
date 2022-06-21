@@ -1,0 +1,6 @@
+framework module Pods_Vibratio {
+  umbrella header "Pods-Vibratio-umbrella.h"
+
+  export *
+  module * { export * }
+}
