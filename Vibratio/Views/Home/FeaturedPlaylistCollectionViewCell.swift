@@ -87,7 +87,7 @@ class FeaturedPlaylistCollectionViewCell: UICollectionViewCell {
     
     func configure(with viewModel: FeaturedPlaylistsCellViewModel) {
         playlistNameLabel.text = viewModel.name
-        creatorNameLabel.text = "\(viewModel.creatorName)-Made"
+        creatorNameLabel.text = viewModel.creatorName
         playlistCoverImageView.sd_setImage(with: viewModel.artworkURL, completed: nil)
     }
 }

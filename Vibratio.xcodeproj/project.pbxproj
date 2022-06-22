@@ -20,6 +20,7 @@
 		416BCDEF286277B100B01766 /* CategoriesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416BCDEE286277B100B01766 /* CategoriesCollectionViewCell.swift */; };
 		416BCDF12862E71000B01766 /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416BCDF02862E71000B01766 /* Categories.swift */; };
 		416BCDF32862EE1000B01766 /* CategoryCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416BCDF22862EE1000B01766 /* CategoryCollectionViewModel.swift */; };
+		416BCDF52862F32F00B01766 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416BCDF42862F32F00B01766 /* CategoryViewController.swift */; };
 		417E0C02282067F500FCFB34 /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417E0C01282067F500FCFB34 /* SettingsModel.swift */; };
 		41D5B4802819DAA500B98730 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D5B47F2819DAA500B98730 /* TabBarViewController.swift */; };
 		41D5B4842819DAFC00B98730 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D5B4832819DAFC00B98730 /* LibraryViewController.swift */; };
@@ -75,6 +76,7 @@
 		416BCDEE286277B100B01766 /* CategoriesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCollectionViewCell.swift; sourceTree = "<group>"; };
 		416BCDF02862E71000B01766 /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		416BCDF22862EE1000B01766 /* CategoryCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewModel.swift; sourceTree = "<group>"; };
+		416BCDF42862F32F00B01766 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		417E0C01282067F500FCFB34 /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
 		41D5B47F2819DAA500B98730 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		41D5B4832819DAFC00B98730 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				41D5B4912819DCDC00B98730 /* PlaylistViewController.swift */,
 				41D5B4932819DCF600B98730 /* SearchResultsViewController.swift */,
 				41E1A4D4284947E800F0A804 /* AlbumViewController.swift */,
+				416BCDF42862F32F00B01766 /* CategoryViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				41D5B4902819DBEE00B98730 /* PlayerViewController.swift in Sources */,
 				41D5B4982819DD2200B98730 /* APICaller.swift in Sources */,
 				416BCDF32862EE1000B01766 /* CategoryCollectionViewModel.swift in Sources */,
+				416BCDF52862F32F00B01766 /* CategoryViewController.swift in Sources */,
 				41E1A4BC283ED7A500F0A804 /* FeaturedPlaylistsResponse.swift in Sources */,
 				41D5B48C2819DBD500B98730 /* SettingsViewController.swift in Sources */,
 				41E1A4C0283F045000F0A804 /* RecommendedGenresResponse.swift in Sources */,

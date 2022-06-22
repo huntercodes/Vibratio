@@ -26,10 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window.rootViewController = navVC
         }
         
-        UITabBar.appearance().isTranslucent = false
-        UITabBar.appearance().tintColor = UIColor(named: "cellTextColor")
-        UITabBar.appearance().barTintColor = UIColor(named: "cellBackgroundColor")
-        
         window.makeKeyAndVisible()
         self.window = window
         

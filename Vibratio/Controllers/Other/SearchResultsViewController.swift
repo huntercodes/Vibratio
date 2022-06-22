@@ -11,7 +11,7 @@ class SearchResultsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "reverseTextColor")
+        view.backgroundColor = UIColor(named: "cellTextColor")
         
     }
     
