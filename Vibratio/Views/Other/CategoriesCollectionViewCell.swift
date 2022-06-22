@@ -1,23 +1,26 @@
 //
-//  GenreCollectionViewCell.swift
+//  CategoriesCollectionViewCell.swift
 //  Vibratio
 //
 //  Created by hunter downey on 6/21/22.
 //
 
 import UIKit
+import SDWebImage
 
-class GenreCollectionViewCell: UICollectionViewCell {
-    static let identifier = "GenreCollectionViewCell"
+class CategoriesCollectionViewCell: UICollectionViewCell {
+    static let identifier = "CategoriesCollectionViewCell"
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
         imageView.tintColor = UIColor(named: "cellTextColor")
         imageView.image = UIImage(
             systemName: "music.quarternote.3",
-            withConfiguration: UIImage.SymbolConfiguration(pointSize: 45, weight: .medium)
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: 55, weight: .medium)
         )
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 11
         return imageView
     }()
     
@@ -43,6 +46,10 @@ class GenreCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         label.text = nil
+        imageView.image = UIImage(
+            systemName: "music.quarternote.3",
+            withConfiguration: UIImage.SymbolConfiguration(pointSize: 55, weight: .medium)
+        )
     }
     
     override func layoutSubviews() {
@@ -50,21 +57,25 @@ class GenreCollectionViewCell: UICollectionViewCell {
         
         label.frame = CGRect(
             x: 10,
-            y: contentView.height / 2,
+            y: contentView.height / 1.75,
             width: contentView.width - 20,
             height: contentView.height / 2
         )
         
         imageView.frame = CGRect(
-            x: contentView.width / 2,
-            y: 0,
-            width: contentView.width / 2,
-            height: contentView.height / 2
+            x: contentView.width / 2.2,
+            y: 10,
+            width: contentView.width / 1.8,
+            height: contentView.height / 1.8
         )
     }
     
-    func configure(with title: String) {
-        label.text = title
+    func configure(with viewModel: CategoryCollectionViewModel) {
+        label.text = viewModel.title
+        imageView.sd_setImage(
+            with: viewModel.artworkURL,
+            completed: nil
+        )
         contentView.backgroundColor = UIColor(named: "cellBackgroundColor")
     }
 }
