@@ -7,11 +7,11 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, UISearchResultsUpdating {
+class SearchViewController: UIViewController, UISearchResultsUpdating, UISearchBarDelegate {
     
     let searchController: UISearchController = {
         let vc = UISearchController(searchResultsController: SearchResultsViewController())
-        vc.searchBar.placeholder = "Artists, songs, or albums"
+        vc.searchBar.placeholder = "Artists, albums, playlists, or songs"
         vc.searchBar.searchBarStyle = .minimal
         vc.definesPresentationContext = true
         return vc
@@ -52,6 +52,7 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "cellBackgroundColor")
         searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         view.addSubview(collectionView)
         collectionView.register(CategoriesCollectionViewCell.self, forCellWithReuseIdentifier: CategoriesCollectionViewCell.identifier)
@@ -77,17 +78,27 @@ class SearchViewController: UIViewController, UISearchResultsUpdating {
         collectionView.frame = view.bounds
     }
     
-    func updateSearchResults(for searchController: UISearchController) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let resultsController = searchController.searchResultsController as? SearchResultsViewController,
-              let query = searchController.searchBar.text,
+              let query = searchBar.text,
               !query.trimmingCharacters(in: .whitespaces).isEmpty else {
             return
         }
         
-        print(query)
-        // Perform search
-        
-        // APICaller.shared.search
+        APICaller.shared.search(with: query) { result in
+            DispatchQueue.main.async {
+                switch result {
+                    case .success(let results):
+                    resultsController.update(with: results)
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+
     }
     
 }

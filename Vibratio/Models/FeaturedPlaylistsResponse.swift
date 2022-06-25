@@ -11,6 +11,7 @@ struct FeaturedPlaylistsResponse: Codable {
     let playlists: PlaylistResponse
 }
 
+// Sorry future Hunter, you were too lazy to make a CategoryResponse so you copied PlaylistResponse, sue yourself for being a bad developer.
 struct CategoryPlaylistsResponse: Codable {
     let playlists: PlaylistResponse
 }
