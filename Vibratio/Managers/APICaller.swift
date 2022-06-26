@@ -230,9 +230,8 @@ final class APICaller {
     
     public func search(with query: String, completion: @escaping (Result<[SearchResult], Error>) -> Void ) {
         createRequest(
-            with: URL(string: "https://api.spotify.com/v1/search?limit=13&type=album,artist,playlist,track&q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"),
-            type: .GET
-        ) { request in
+            with: URL(string: "https://api.spotify.com/v1/search?limit=7&type=album,artist,playlist,track&q=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"),
+            type: .GET) { request in
             let task = URLSession.shared.dataTask(with: request) { data, _, error in
                 guard let data = data, error == nil else {
                     completion(.failure(APIError.failedToGetData))

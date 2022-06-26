@@ -9,11 +9,13 @@ import UIKit
 
 class SearchResultsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    weak var delegate: SearchResultsViewControllerDelegate?
+    
     private var sections: [SearchSection] = []
     
     private let tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.backgroundColor = UIColor(named: "cellBackgroundColor")
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.backgroundColor = UIColor(named: "otherColor")
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.isHidden = true
         return tableView
@@ -21,7 +23,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "cellBackgroundColor")
+        view.backgroundColor = UIColor(named: "otherColor")
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
@@ -35,14 +37,36 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
     func update(with results: [SearchResult]) {
         let artists = results.filter({
             switch $0 {
-            case .artist: return true
-            default: return false
+                case .artist: return true
+                default: return false
+            }
+        })
+        let albums = results.filter({
+            switch $0 {
+                case .album: return true
+                default: return false
+            }
+        })
+        let playlists = results.filter({
+            switch $0 {
+                case .playlist: return true
+                default: return false
+            }
+        })
+        let tracks = results.filter({
+            switch $0 {
+                case .track: return true
+                default: return false
             }
         })
         
         self.sections = [
-            SearchSection(title: "Artists", results: artists)
+            SearchSection(title: "Songs", results: tracks),
+            SearchSection(title: "Artists", results: artists),
+            SearchSection(title: "Albums", results: albums),
+            SearchSection(title: "Playlists", results: playlists)
         ]
+        
         tableView.reloadData()
         tableView.isHidden = results.isEmpty
     }
@@ -62,16 +86,32 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         
         switch result {
             case .artist(let model):
-                cell.textLabel?.text = "Artist: " + model.name
+                cell.textLabel?.text = model.name
             case .album(let model):
-                cell.textLabel?.text = "Album: " + model.name
+                cell.textLabel?.text = model.name
             case .track(let model):
-                cell.textLabel?.text = "Track: " + model.name
+                cell.textLabel?.text = model.name
             case .playlist(let model):
-                cell.textLabel?.text = "Playlist: " + model.name
+                cell.textLabel?.text = model.name
         }
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let result = sections[indexPath.section].results[indexPath.row]
+        
+        delegate?.didTapResult(result)
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return sections[section].title
+    }
+    
+}
+
+protocol SearchResultsViewControllerDelegate: AnyObject {
+    func didTapResult(_ result: SearchResult)
 }
