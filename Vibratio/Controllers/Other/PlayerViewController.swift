@@ -8,9 +8,17 @@
 import UIKit
 import SDWebImage
 
+protocol PlayerViewControllerDelegate: AnyObject {
+    func didTapPlayPause()
+    func didTapForward()
+    func didTapBackward()
+}
+
 class PlayerViewController: UIViewController {
     
     weak var dataSource: PlayerDataSource?
+    
+    weak var delegate: PlayerViewControllerDelegate?
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -39,17 +47,17 @@ class PlayerViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         imageView.frame = CGRect(
-            x: 0,
+            x: 15,
             y: view.safeAreaInsets.top,
-            width: view.width,
-            height: view.width
+            width: view.width - 30,
+            height: view.width - 30
         )
         
         controlsView.frame = CGRect(
-            x: 10,
+            x: 15,
             y: imageView.bottom + 10,
-            width: view.width - 20,
-            height: view.height - imageView.height - view.safeAreaInsets.top - view.safeAreaInsets.bottom - 15
+            width: view.width - 30,
+            height: view.height - imageView.height - view.safeAreaInsets.top - view.safeAreaInsets.bottom - 25
         )
     }
     
@@ -75,15 +83,15 @@ class PlayerViewController: UIViewController {
 
 extension PlayerViewController: PlayerControlsViewDelegate {
     func playerControlsViewDidTapPlayPause(_ playerControlsView: PlayerControlsView) {
-        
+        delegate?.didTapPlayPause()
     }
     
     func playerControlsViewDidTapBackward(_ playerControlsView: PlayerControlsView) {
-        
+        delegate?.didTapBackward()
     }
     
     func playerControlsViewDidTapForward(_ playerControlsView: PlayerControlsView) {
-        
+        delegate?.didTapForward()
     }
     
     

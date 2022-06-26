@@ -15,6 +15,8 @@ protocol PlayerControlsViewDelegate: AnyObject {
 
 final class PlayerControlsView: UIView {
     
+    private var isPlaying = true
+    
     weak var delegate: PlayerControlsViewDelegate?
     
     private let volumeSlider: UISlider = {
@@ -98,7 +100,14 @@ final class PlayerControlsView: UIView {
     }
     
     @objc private func didTapPlayPause() {
+        self.isPlaying = !isPlaying
         delegate?.playerControlsViewDidTapPlayPause(self)
+        
+        // Update image
+        let pause = UIImage(systemName: "pause.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 47, weight: .regular))
+        let play = UIImage(systemName: "play.circle.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 47, weight: .regular))
+        
+        playPauseButton.setImage(isPlaying ? pause : play, for: .normal)
     }
     
     override func layoutSubviews() {
