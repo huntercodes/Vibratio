@@ -35,7 +35,7 @@ final class PlayPresenter {
     var player: AVPlayer?
     
     func startPlayback(from viewController: UIViewController, track: AudioTrack) {
-        guard let url = URL(string: track.preview_url ?? "") else {
+        guard let url = URL(string: track.uri ?? "") else {
             return
         }
         player = AVPlayer(url: url)
