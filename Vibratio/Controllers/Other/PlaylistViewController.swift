@@ -53,6 +53,8 @@ class PlaylistViewController: UIViewController {
 
     private var viewModels = [RecommendedMusicCellViewModel]()
     
+    private var tracks = [AudioTrack]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = playlist.name
@@ -75,18 +77,19 @@ class PlaylistViewController: UIViewController {
         APICaller.shared.getPlaylistDetails(for: playlist) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let model):
-                    // RecommendedMusicCellViewModel
-                    self?.viewModels = model.tracks.items.compactMap({
-                        RecommendedMusicCellViewModel(
-                            name: $0.track.name,
-                            artistName: $0.track.artists.first?.name ?? "-",
-                            artworkURL: URL(string: $0.track.album?.images.first?.url ?? "")
-                        )
-                    })
-                    self?.collectionView.reloadData()
-                case .failure(let error):
-                    print(error.localizedDescription)
+                    case .success(let model):
+                        // RecommendedMusicCellViewModel
+                        self?.tracks = model.tracks.items.compactMap({ $0.track })
+                        self?.viewModels = model.tracks.items.compactMap({
+                            RecommendedMusicCellViewModel(
+                                name: $0.track.name,
+                                artistName: $0.track.artists.first?.name ?? "-",
+                                artworkURL: URL(string: $0.track.album?.images.first?.url ?? "")
+                            )
+                        })
+                        self?.collectionView.reloadData()
+                    case .failure(let error):
+                        print(error.localizedDescription)
                 }
             }
         }
@@ -150,12 +153,14 @@ extension PlaylistViewController: UICollectionViewDelegate, UICollectionViewData
             kind == UICollectionView.elementKindSectionHeader else {
                 return UICollectionReusableView()
         }
+        
         let headerViewModel = PlaylistHeaderViewModel(
             name: playlist.name,
             ownerName: playlist.owner.display_name,
             description: playlist.description,
             artworkURL: URL(string: playlist.images.first?.url ?? "")
         )
+        
         header.configure(with: headerViewModel)
         header.delegate = self
         return header
@@ -163,13 +168,14 @@ extension PlaylistViewController: UICollectionViewDelegate, UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        // Play song
+        let index = indexPath.row
+        let track = tracks[index]
+        PlayPresenter.shared.startPlayback(from: self, track: track)
     }
 }
 
 extension PlaylistViewController: PlaylistHeaderCollectionReuseableViewDelegate {
     func playlistHeaderCollectionReuseableViewDidTapPlayAll(_ header: PlaylistHeaderCollectionReusableView) {
-        // start play list play in queue
-        print("playing tunes without you")
+        PlayPresenter.shared.startPlayback(from: self, tracks: tracks)
     }
 }

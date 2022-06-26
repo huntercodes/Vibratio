@@ -290,7 +290,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 navigationController?.pushViewController(vc, animated: true)
                 
             case .recommendedMusic:
-                break
+                let track = tracks[indexPath.row]
+            PlayPresenter.shared.startPlayback(from: self, track: track)
         }
     }
     
