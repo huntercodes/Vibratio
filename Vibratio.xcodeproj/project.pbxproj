@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4101DCA528681897007B4A1F /* SearchResultDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101DCA428681897007B4A1F /* SearchResultDefaultTableViewCell.swift */; };
+		4101DCA728681AC1007B4A1F /* SearchResultDefaultTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4101DCA628681AC1007B4A1F /* SearchResultDefaultTableViewModel.swift */; };
 		411965B82861188200B51A65 /* PlaylistHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411965B72861188200B51A65 /* PlaylistHeaderViewModel.swift */; };
 		41248C4D2867B77400C16DFB /* SearchResultsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41248C4C2867B77400C16DFB /* SearchResultsResponse.swift */; };
 		41248C4F2867D03900C16DFB /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41248C4E2867D03900C16DFB /* SearchResult.swift */; };
@@ -64,6 +66,8 @@
 
 /* Begin PBXFileReference section */
 		30C171AAC4473AD74BB7F5CE /* Pods-SpotifyUIKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpotifyUIKit.debug.xcconfig"; path = "Target Support Files/Pods-SpotifyUIKit/Pods-SpotifyUIKit.debug.xcconfig"; sourceTree = "<group>"; };
+		4101DCA428681897007B4A1F /* SearchResultDefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDefaultTableViewCell.swift; sourceTree = "<group>"; };
+		4101DCA628681AC1007B4A1F /* SearchResultDefaultTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultDefaultTableViewModel.swift; sourceTree = "<group>"; };
 		411965B72861188200B51A65 /* PlaylistHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistHeaderViewModel.swift; sourceTree = "<group>"; };
 		41248C4C2867B77400C16DFB /* SearchResultsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsResponse.swift; sourceTree = "<group>"; };
 		41248C4E2867D03900C16DFB /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
@@ -136,6 +140,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4101DCA32868182C007B4A1F /* SearchResultCells */ = {
+			isa = PBXGroup;
+			children = (
+				4101DCA428681897007B4A1F /* SearchResultDefaultTableViewCell.swift */,
+			);
+			path = SearchResultCells;
+			sourceTree = "<group>";
+		};
 		41485E162819D80B000648D0 = {
 			isa = PBXGroup;
 			children = (
@@ -180,8 +192,9 @@
 		41485E372819D84F000648D0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				416BCDE528623D5900B01766 /* Other */,
+				4101DCA32868182C007B4A1F /* SearchResultCells */,
 				41E1A4C5283F25B500F0A804 /* Home */,
+				416BCDE528623D5900B01766 /* Other */,
 				41485E2D2819D80D000648D0 /* LaunchScreen.storyboard */,
 			);
 			path = Views;
@@ -221,6 +234,7 @@
 				411965B72861188200B51A65 /* PlaylistHeaderViewModel.swift */,
 				416BCDEA28624CCC00B01766 /* AlbumCellViewModel.swift */,
 				416BCDF22862EE1000B01766 /* CategoryCollectionViewModel.swift */,
+				4101DCA628681AC1007B4A1F /* SearchResultDefaultTableViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -432,6 +446,7 @@
 				41D5B4A22819DD7000B98730 /* UserProfile.swift in Sources */,
 				41E1A4D128471AAB00F0A804 /* FeaturedPlaylistsCellViewModel.swift in Sources */,
 				4162B51D284F4AB7000CCD8C /* SearchViewController.swift in Sources */,
+				4101DCA528681897007B4A1F /* SearchResultDefaultTableViewCell.swift in Sources */,
 				41E1A4C4283F132800F0A804 /* Album.swift in Sources */,
 				41D5B4962819DD1500B98730 /* AuthManager.swift in Sources */,
 				41D5B4942819DCF600B98730 /* SearchResultsViewController.swift in Sources */,
@@ -442,6 +457,7 @@
 				41E1A4D5284947E800F0A804 /* AlbumViewController.swift in Sources */,
 				41248C512867D59D00C16DFB /* SearchSection.swift in Sources */,
 				41E1A4D92849507700F0A804 /* PlaylistDetailResponse.swift in Sources */,
+				4101DCA728681AC1007B4A1F /* SearchResultDefaultTableViewModel.swift in Sources */,
 				41D5B4802819DAA500B98730 /* TabBarViewController.swift in Sources */,
 				41D5B49A2819DD2D00B98730 /* HapticsManager.swift in Sources */,
 				41D5B4A6281B758000B98730 /* AuthResponse.swift in Sources */,

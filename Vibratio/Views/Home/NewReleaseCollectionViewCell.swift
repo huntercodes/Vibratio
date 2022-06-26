@@ -29,14 +29,14 @@ class NewReleaseCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private let numberOfTracksLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 14, weight: .light)
-        label.textColor = UIColor(named: "cellTextColor")
-        
-        return label
-    }()
+//    private let numberOfTracksLabel: UILabel = {
+//        let label = UILabel()
+//        label.numberOfLines = 0
+//        label.font = .systemFont(ofSize: 14, weight: .light)
+//        label.textColor = UIColor(named: "cellTextColor")
+//
+//        return label
+//    }()
     
     private let artistNameLabel: UILabel = {
         let label = UILabel()
@@ -55,7 +55,7 @@ class NewReleaseCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(albumNameLabel)
         contentView.addSubview(artistNameLabel)
         contentView.clipsToBounds = true
-        contentView.addSubview(numberOfTracksLabel)
+        // contentView.addSubview(numberOfTracksLabel)
     }
     
     required init?(coder: NSCoder) {
@@ -72,7 +72,7 @@ class NewReleaseCollectionViewCell: UICollectionViewCell {
         let albumLabelHeight = min(60, albumLabelSize.height)
         
         artistNameLabel.sizeToFit()
-        numberOfTracksLabel.sizeToFit()
+        // numberOfTracksLabel.sizeToFit()
         
         albumCoverImageView.frame = CGRect(x: 5, y: 5, width: imageSize, height: imageSize)
     
@@ -90,26 +90,26 @@ class NewReleaseCollectionViewCell: UICollectionViewCell {
             height: 35
         )
         
-        numberOfTracksLabel.frame = CGRect(
-            x: albumCoverImageView.right + 10,
-            y: contentView.bottom - 44,
-            width: numberOfTracksLabel.width + 25,
-            height: 35
-        )
+//        numberOfTracksLabel.frame = CGRect(
+//            x: albumCoverImageView.right + 10,
+//            y: contentView.bottom - 44,
+//            width: numberOfTracksLabel.width + 25,
+//            height: 35
+//        )
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         albumNameLabel.text = nil
         artistNameLabel.text = nil
-        numberOfTracksLabel.text = nil
+        // numberOfTracksLabel.text = nil
         albumCoverImageView.image = nil
     }
     
     func configure(with viewModel: NewReleasesCellViewModel) {
         albumNameLabel.text = viewModel.name
         artistNameLabel.text = viewModel.artistName
-        numberOfTracksLabel.text = "Tracks: \(viewModel.numberOfTracks)"
+        // numberOfTracksLabel.text = "Tracks: \(viewModel.numberOfTracks)"
         albumCoverImageView.sd_setImage(with: viewModel.artworkURL, completed: nil)
     }
 }
