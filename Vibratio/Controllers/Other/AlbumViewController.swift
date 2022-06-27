@@ -165,13 +165,9 @@ extension AlbumViewController: UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        let tracksWithAlbum: [AudioTrack] = tracks.compactMap({
-            var track = $0
-            track.album = self.album
-            return track
-        })
-        let trackWithAlbum = tracksWithAlbum[indexPath.row]
-        PlayPresenter.shared.startPlayback(from: self, track: trackWithAlbum)
+        var track = tracks[indexPath.row]
+        track.album = self.album
+        PlayPresenter.shared.startPlayback(from: self, track: track)
     }
 }
 
