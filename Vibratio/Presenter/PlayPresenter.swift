@@ -35,7 +35,7 @@ final class PlayPresenter {
     var player: AVPlayer?
     
     func startPlayback(from viewController: UIViewController, track: AudioTrack) {
-        guard let url = URL(string: track.uri ?? "") else {
+        guard let url = URL(string: track.uri ?? "spotify:track:20I6sIOMTCkB6w7ryavxtO") else {
             return
         }
         player = AVPlayer(url: url)
@@ -87,6 +87,10 @@ extension PlayPresenter: PlayerViewControllerDelegate {
                 player.play()
             }
         }
+    }
+    
+    func didSlideSlider(_ value: Float) {
+        player?.volume = value
     }
 }
 
