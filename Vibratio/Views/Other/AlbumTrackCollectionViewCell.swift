@@ -11,6 +11,15 @@ import UIKit
 class AlbumTrackCollectionViewCell: UICollectionViewCell {
     static let identifier = "AlbumTrackCollectionViewCell"
     
+    private let albumCoverImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.masksToBounds = true
+        imageView.image = UIImage(systemName: "photo")
+        imageView.contentMode = .scaleAspectFill
+        
+        return imageView
+    }()
+    
     private let trackNameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
@@ -34,6 +43,7 @@ class AlbumTrackCollectionViewCell: UICollectionViewCell {
         backgroundColor = UIColor(named: "cellBackgroundColor")
         contentView.backgroundColor = UIColor(named: "cellBackgroundColor")
         contentView.addSubview(trackNameLabel)
+        contentView.addSubview(albumCoverImageView)
         contentView.addSubview(artistNameLabel)
         contentView.clipsToBounds = true
     }
@@ -45,17 +55,25 @@ class AlbumTrackCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
     
+        let imageSize = contentView.height - 4
+        albumCoverImageView.frame = CGRect(
+            x: 2,
+            y: 2,
+            width: imageSize,
+            height: imageSize
+        )
+        
         artistNameLabel.frame = CGRect(
-            x: 10,
+            x: albumCoverImageView.right + 10,
             y: contentView.height / 2,
-            width: contentView.width - 16,
+            width: contentView.width - albumCoverImageView.right - 16,
             height: contentView.height / 2
         )
         
         trackNameLabel.frame = CGRect(
-            x: 10,
+            x: albumCoverImageView.right + 10,
             y: 0,
-            width: contentView.width - 16,
+            width: contentView.width - albumCoverImageView.right - 16,
             height: contentView.height / 2
         )
     }
@@ -64,10 +82,12 @@ class AlbumTrackCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         artistNameLabel.text = nil
         trackNameLabel.text = nil
+        albumCoverImageView.image = nil
     }
     
     func configure(with viewModel: AlbumCellViewModel) {
         trackNameLabel.text = viewModel.name
         artistNameLabel.text = viewModel.artistName
+        albumCoverImageView.sd_setImage(with: viewModel.artworkURL)
     }
 }

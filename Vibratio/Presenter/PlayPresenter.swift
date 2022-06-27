@@ -25,14 +25,19 @@ final class PlayPresenter {
     var currentTrack: AudioTrack? {
         if let track = track, tracks.isEmpty {
             return track
-        } else if !tracks.isEmpty {
-            return tracks.first
+        } else if let player = self.playerQueue,!tracks.isEmpty {
+            let item = player.currentItem
+            let items = player.items()
+            guard let index = items.firstIndex(where: { $0 == item }) else {
+                return nil
+            }
+            return tracks[index]
         }
-        
         return nil
     }
     
     var player: AVPlayer?
+    var playerQueue: AVQueuePlayer?
     
     func startPlayback(from viewController: UIViewController, track: AudioTrack) {
         guard let url = URL(string: track.uri ?? "spotify:track:20I6sIOMTCkB6w7ryavxtO") else {
@@ -55,7 +60,21 @@ final class PlayPresenter {
     func startPlayback(from viewController: UIViewController, tracks: [AudioTrack]) {
         self.tracks = tracks
         self.track = nil
+        
+        self.playerQueue = AVQueuePlayer(items: tracks.compactMap({
+            guard let url = URL(string: $0.uri ?? "spotify:track:20I6sIOMTCkB6w7ryavxtO") else {
+                return nil
+            }
+            
+            return AVPlayerItem(url: url)
+        }))
+        
+        playerQueue?.volume = 0.3
+        playerQueue?.play()
+        
         let vc = PlayerViewController()
+        vc.dataSource = self
+        vc.delegate = self
         viewController.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
     
@@ -65,8 +84,11 @@ extension PlayPresenter: PlayerViewControllerDelegate {
     func didTapForward() {
         if tracks.isEmpty {
             player?.pause()
-        } else {
-            
+        } else if let firstItem = playerQueue?.items().first {
+            playerQueue?.pause()
+            playerQueue?.removeAllItems()
+            playerQueue = AVQueuePlayer(items: [firstItem])
+            playerQueue?.play()
         }
     }
     
@@ -74,13 +96,21 @@ extension PlayPresenter: PlayerViewControllerDelegate {
         if tracks.isEmpty {
             player?.pause()
             player?.play()
-        } else {
+        } else if let player = playerQueue {
             
         }
     }
     
     func didTapPlayPause() {
+        // Single song
         if let player = player {
+            if player.timeControlStatus == .playing {
+                player.pause()
+            } else if player.timeControlStatus == .paused {
+                player.play()
+            }
+        // Song queue
+        } else if let player = playerQueue {
             if player.timeControlStatus == .playing {
                 player.pause()
             } else if player.timeControlStatus == .paused {
