@@ -20,9 +20,9 @@ class TabBarViewController: UITabBarController {
         vc2.title = "Search"
         vc3.title = "Library"
         
-        vc1.navigationItem.largeTitleDisplayMode = .always
-        vc2.navigationItem.largeTitleDisplayMode = .always
-        vc3.navigationItem.largeTitleDisplayMode = .always
+//        vc1.navigationItem.largeTitleDisplayMode = .always
+//        vc2.navigationItem.largeTitleDisplayMode = .always
+//        vc3.navigationItem.largeTitleDisplayMode = .always
         
         let nav1 = UINavigationController(rootViewController: vc1)
         let nav2 = UINavigationController(rootViewController: vc2)
@@ -39,6 +39,11 @@ class TabBarViewController: UITabBarController {
         nav1.navigationBar.prefersLargeTitles = true
         nav2.navigationBar.prefersLargeTitles = true
         nav3.navigationBar.prefersLargeTitles = true
+        
+        UITabBar.appearance().tintColor = UIColor(named: "tabBarColor")
+        UITabBar.appearance().unselectedItemTintColor = UIColor(named: "cellTextColor")
+        UITabBar.appearance().backgroundColor = UIColor(named: "reverseTextColor")
+        UITabBarAppearance().configureWithTransparentBackground()
         
         setViewControllers([nav1, nav2, nav3], animated: false)
     }
