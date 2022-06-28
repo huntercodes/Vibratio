@@ -17,6 +17,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = UIColor(named: "otherColor")
         tableView.register(SearchResultDefaultTableViewCell.self, forCellReuseIdentifier: SearchResultDefaultTableViewCell.identifier)
+        // tableView.register(SearchResultSubtitleTableViewCell.self, forCellReuseIdentifier: SearchResultSubtitleTableViewCell.identifier)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         tableView.isHidden = true
         return tableView
@@ -96,6 +97,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
             
                 cell.configure(with: vm)
                 return cell
+            
             case .album(let album):
                 guard let cell = tableView.dequeueReusableCell(
                     withIdentifier: SearchResultDefaultTableViewCell.identifier,
@@ -104,10 +106,14 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
                     return UITableViewCell()
                 }
             
-                let vm = SearchResultDefaultTableViewModel(title: album.name, imageURL: URL(string: album.images.first?.url ?? ""))
+                let vm = SearchResultDefaultTableViewModel(
+                    title: album.name,
+                    imageURL: URL(string: album.images.first?.url ?? "")
+                )
             
                 cell.configure(with: vm)
                 return cell
+            
             case .track(let track):
                 guard let cell = tableView.dequeueReusableCell(
                     withIdentifier: SearchResultDefaultTableViewCell.identifier,
@@ -120,6 +126,7 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
             
                 cell.configure(with: vm)
                 return cell
+            
             case .playlist(let playlist):
                 guard let cell = tableView.dequeueReusableCell(
                     withIdentifier: SearchResultDefaultTableViewCell.identifier,
@@ -128,7 +135,10 @@ class SearchResultsViewController: UIViewController, UITableViewDelegate, UITabl
                     return UITableViewCell()
                 }
             
-                let vm = SearchResultDefaultTableViewModel(title: playlist.name, imageURL: URL(string: playlist.images.first?.url ?? ""))
+                let vm = SearchResultDefaultTableViewModel(
+                    title: playlist.name,
+                    imageURL: URL(string: playlist.images.first?.url ?? "")
+                )
             
                 cell.configure(with: vm)
                 return cell

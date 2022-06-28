@@ -19,7 +19,7 @@ class LibraryToggleView: UIView {
         case album
     }
     
-    private var state: State = .playlist
+    var state: State = .playlist
     
     weak var delegate: LibraryToggleViewDelegate?
     
@@ -30,6 +30,7 @@ class LibraryToggleView: UIView {
         let button = UIButton()
         button.setTitleColor(UIColor(named: "tabBarColor"), for: .normal)
         button.setTitle("Playlists", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 11
         button.backgroundColor = UIColor(named: "reverseTextColor")
@@ -40,6 +41,7 @@ class LibraryToggleView: UIView {
         let button = UIButton()
         button.setTitleColor(UIColor(named: "cellTextColor"), for: .normal)
         button.setTitle("Albums", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 15, weight: .medium)
         button.layer.masksToBounds = true
         button.layer.cornerRadius = 11
         button.backgroundColor = UIColor(named: "reverseTextColor")
@@ -70,22 +72,18 @@ class LibraryToggleView: UIView {
     
     @objc private func didTapPlaylists() {
         state = .playlist
-        UIView.animate(withDuration: 0.175) { [self] in
+        UIView.animate(withDuration: 0.23) { [self] in
             self.layoutIndicator()
         }
         delegate?.libraryToggleViewDidTapPlaylists(self)
-        playlistButton.setTitleColor(selectedColor, for: .normal)
-        albumButton.setTitleColor(unselectedColor, for: .normal)
     }
     
     @objc private func didTapAlbums() {
         state = .album
-        UIView.animate(withDuration: 0.175) { [self] in
+        UIView.animate(withDuration: 0.23) { [self] in
             self.layoutIndicator()
         }
         delegate?.libraryToggleViewDidTapAlbums(self)
-        albumButton.setTitleColor(selectedColor, for: .normal)
-        playlistButton.setTitleColor(unselectedColor, for: .normal)
     }
     
     override func layoutSubviews() {
@@ -115,21 +113,26 @@ class LibraryToggleView: UIView {
                 x: 0,
                 y: playlistButton.bottom,
                 width: 101,
-                height: 3
+                height: 1
             )
+            playlistButton.setTitleColor(selectedColor, for: .normal)
+            albumButton.setTitleColor(unselectedColor, for: .normal)
             
             case .album:
             indicatorView.frame = CGRect(
                 x: playlistButton.right + 4,
                 y: albumButton.bottom,
                 width: 101,
-                height: 3
+                height: 1
             )
+            albumButton.setTitleColor(selectedColor, for: .normal)
+            playlistButton.setTitleColor(unselectedColor, for: .normal)
         }
     }
     
     func update(for state: State) {
         self.state = state
+        
         UIView.animate(withDuration: 0.175) {
             self.layoutIndicator()
         }
