@@ -9,7 +9,7 @@ User can login to their Spotify account, listen to their own playlists, create/e
 
 - Swift
 - UIKit
-- Spotify API's
+- Spotify APIs
 - SDWebImage
 - Firebase
 - Appirater
